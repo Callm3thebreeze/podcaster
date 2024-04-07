@@ -22,6 +22,8 @@ const PodcastList = ({ podcastsData }) => {
       <div className="pd-grid">
         {filteredPodcasts.map((podcast) => (
           <PodcastCard
+            key={podcast.id}
+            id={podcast.id}
             name={podcast.name}
             artist={podcast.artist}
             image={podcast.image}

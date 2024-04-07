@@ -1,29 +1,16 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 import PodcastList from "@/components/PodcastList/PodcastList.jsx";
-import { getPodcasts } from "../utils/fetchData";
+import { podcastsData } from "../utils/fetchData";
 import mockData from "@/lib/mockData.json";
-import PodcastCard from "@/components/PodcastCard.astro";
 
-const url =
-  "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
-
-// const data = await getPodcasts(url);
-let podcastsData = mockData.feed.entry.map((podcast) => ({
-  id: podcast.id.attributes["im:id"],
-  name: podcast["im:name"].label,
-  image: podcast["im:image"][2].label,
-  artist: podcast["im:artist"].label,
-  category: podcast.category.attributes.label,
-  summary: podcast.summary.label,
-  link: podcast.link.attributes.href,
-}));
+let podcastsList = await podcastsData;
 ---
 
-<Layout title="Podcaster" />
+<MainLayout title="Podcaster" />
 
 <main>
-  <PodcastList client:load podcastsData={podcastsData} />
+  <PodcastList client:load podcastsData={podcastsList} />
 </main>
 <style>
   main {
