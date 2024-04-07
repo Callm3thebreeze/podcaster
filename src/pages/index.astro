@@ -1,15 +1,15 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import podcastCard from "@/components/podcastCard.astro";
+import PodcastList from "@/components/PodcastList/PodcastList.jsx";
 import { getPodcasts } from "../utils/fetchData";
 import mockData from "@/lib/mockData.json";
-import PodcastCard from "@/components/podcastCard.astro";
+import PodcastCard from "@/components/PodcastCard.astro";
 
 const url =
   "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
 
 // const data = await getPodcasts(url);
-const podcastsData = mockData.feed.entry.map((podcast) => ({
+let podcastsData = mockData.feed.entry.map((podcast) => ({
   id: podcast.id.attributes["im:id"],
   name: podcast["im:name"].label,
   image: podcast["im:image"][2].label,
@@ -23,46 +23,12 @@ const podcastsData = mockData.feed.entry.map((podcast) => ({
 <Layout title="Podcaster" />
 
 <main>
-  <input
-    type="search"
-    id="podcastSearch"
-    name="q"
-    placeholder="Search for a podcast or artist..."
-  />
-  <section class="podcasts">
-    {
-      podcastsData.map((podcast) => (
-        <PodcastCard
-          name={podcast.name}
-          image={podcast.image}
-          artist={podcast.artist}
-        />
-      ))
-    }
-  </section>
+  <PodcastList client:load podcastsData={podcastsData} />
 </main>
 <style>
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  input[type="search"] {
-    margin: 1rem 0 1rem auto;
-    padding: 0.5rem;
-    font-size: 1rem;
-    width: 100%;
-    max-width: 350px;
-    border-radius: 3px;
-  }
-  section {
-    display: grid;
-    width: 100%;
-    gap: 2rem;
-    list-style: none;
-    grid-template-columns: repeat(4, minmax(min(100%, 13rem), 1fr));
-    justify-content: center;
-    padding: 0 5rem;
   }
 </style>

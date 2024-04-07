@@ -1,0 +1,17 @@
+input[type="search"] {
+  margin: 1rem 0 1rem auto;
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 3px;
+}
+
+.pd-grid {
+  display: grid;
+  width: 100%;
+  gap: 2rem;
+  list-style: none;
+  grid-template-columns: repeat(4, minmax(min(100%, 13rem), 1fr));
+  justify-content: center;
+}
