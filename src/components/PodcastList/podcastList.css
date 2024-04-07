@@ -1,8 +1,15 @@
-input[type="search"] {
+.pd-search {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin: 1rem 0 1rem auto;
+}
+
+.pd-search > input[type="search"] {
   padding: 0.5rem;
   font-size: 1rem;
   width: 100%;
+  min-width: 300px;
   max-width: 350px;
   border-radius: 3px;
 }

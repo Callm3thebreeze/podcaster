@@ -13,12 +13,15 @@ const PodcastList = ({ podcastsData }) => {
 
   return (
     <>
-      <input
-        type="search"
-        placeholder="Search for a podcast or artist..."
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-      />
+      <div className="pd-search">
+        <h1>{filteredPodcasts.length}</h1>
+        <input
+          type="search"
+          placeholder="Search for a podcast or artist..."
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+      </div>
       <div className="pd-grid">
         {filteredPodcasts.map((podcast) => (
           <PodcastCard
