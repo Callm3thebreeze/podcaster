@@ -4,7 +4,6 @@ async function getPodcasts() {
       "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
     );
     const json = await response.json();
-    console.log(json.feed.entry);
 
     let podcastsData = json.feed.entry.map((podcast) => ({
       id: podcast.id.attributes["im:id"],
@@ -25,15 +24,12 @@ async function getPodcasts() {
 
 export async function getPodcastDetail(id) {
   try {
-    const response = await fetch(`https://itunes.apple.com/lookup?id=${id}`);
+    const response = await fetch(
+      `https://itunes.apple.com/lookup?id=${id}&entity=podcastEpisode&limit=250`
+    );
     const json = await response.json();
-    console.log(json);
 
-    let podcastCollectionUrl = {
-      collectionUrl: json.results[0].collectionViewUrl,
-    };
-
-    return podcastCollectionUrl;
+    return json;
   } catch (error) {
     console.error("Error fetching data: ", error);
   }

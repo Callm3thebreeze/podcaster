@@ -1,34 +1,70 @@
 ---
-const { podcastCollectionUrl } = Astro.props;
+const { episodesData } = Astro.props;
+const episodesArray = episodesData.results.slice(1);
+console.log(episodesArray);
+const episodesNumber = episodesData.resultCount;
+let episodes = episodesArray.map((episode) => ({
+  title: episode.trackName,
+  releaseDate: episode.releaseDate,
+  duration: episode.trackTimeMillis,
+  description: episode.description,
+  media: episode.episodeUrl,
+}));
 ---
 
 <article class="pd-episodes-container">
-  <div class="pd-episodes-list pd-episodes-list--head">
-    <h2>Episodes:</h2>
-  </div>
-  <div class="pd-episodes-list pd-episodes-list--content">
-    <h3>Colección de episodios:</h3>
-    <a href={podcastCollectionUrl.collectionUrl}>Click here</a>
-  </div>
+  <h3 class="pd-episodes-head">Episodes: {episodesNumber}</h3>
+  <table class="pd-episodes-list">
+    <thead>
+      <tr>
+        <th><a href="">Título del Podcast</a></th>
+        <th>Fecha de Salida</th>
+        <th>Duración</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        episodes.map((episode) => (
+          <tr>
+            <td>{episode.title}</td>
+            <td>{episode.releaseDate}</td>
+            <td>{episode.duration}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
 </article>
 
 <style>
+  .pd-episodes-list td {
+    padding: 0.5rem;
+  }
+
   .pd-episodes-container {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
+  }
+
+  .pd-episodes-container h3 {
+    margin: 0;
+    padding: 0.5rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
 
   .pd-episodes-list {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 1rem;
   }
-  .pd-episodes-list--head > h2 {
-    margin: 0;
+  .pd-episodes-list th {
+    font-weight: bold;
+    text-align: left;
   }
 
-  .pd-episodes-list--content > h3 {
-    margin: 0;
+  .pd-episodes-list td {
+    padding: 0.5rem;
   }
 </style>

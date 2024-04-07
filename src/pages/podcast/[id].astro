@@ -7,13 +7,17 @@ import EpisodesList from "@/components/EpisodesList.astro";
 const { id } = Astro.params;
 let podcastsList = await podcastsData;
 const podcastInfo = await podcastsList.find((podcast) => podcast.id === id);
-const podcastCollectionUrl = await getPodcastDetail(id);
+const episodesData = await getPodcastDetail(id);
 ---
+
+<script define:vars={{ episodesData }}>
+  console.log(episodesData);
+</script>
 
 <MainLayout title="Podcaster" />
 
 <DetailLayout podcastInfo={podcastInfo}>
-  <EpisodesList podcastCollectionUrl={podcastCollectionUrl} />
+  <EpisodesList episodesData={episodesData} />
 </DetailLayout>
 
 <style>
