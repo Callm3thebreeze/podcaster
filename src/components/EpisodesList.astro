@@ -22,11 +22,13 @@ const { podcastCollectionUrl } = Astro.props;
 
   .pd-episodes-list {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 0 1rem;
+    padding: 1rem;
   }
-  .pd-episodes-list--head {
+  .pd-episodes-list--head > h2 {
+    margin: 0;
   }
 
-  .pd-episodes-list--content {
+  .pd-episodes-list--content > h3 {
+    margin: 0;
   }
 </style>
