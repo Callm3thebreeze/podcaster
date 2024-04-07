@@ -12,20 +12,23 @@ const url =
 const podcastsData = mockData.feed.entry.map((podcast) => ({
   id: podcast.id.attributes["im:id"],
   name: podcast["im:name"].label,
-  image: podcast["im:image"][1].label,
-  largeImage: podcast["im:image"][2].label,
+  image: podcast["im:image"][2].label,
   artist: podcast["im:artist"].label,
   category: podcast.category.attributes.label,
   summary: podcast.summary.label,
   link: podcast.link.attributes.href,
 }));
-console.log(podcastsData);
 ---
 
 <Layout title="Podcaster" />
 
 <main>
-  <h1>Podcasts</h1>
+  <input
+    type="search"
+    id="podcastSearch"
+    name="q"
+    placeholder="Search for a podcast or artist..."
+  />
   <section class="podcasts">
     {
       podcastsData.map((podcast) => (
@@ -43,7 +46,15 @@ console.log(podcastsData);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 10%;
+  }
+
+  input[type="search"] {
+    margin: 1rem 0 1rem auto;
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 3px;
   }
   section {
     display: grid;
