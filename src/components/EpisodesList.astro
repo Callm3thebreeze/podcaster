@@ -2,5 +2,31 @@
 const { podcastCollectionUrl } = Astro.props;
 ---
 
-<h3>Colección de episodios:</h3>
-<a href={podcastCollectionUrl.collectionUrl}>Click here</a>
+<article class="pd-episodes-container">
+  <div class="pd-episodes-list pd-episodes-list--head">
+    <h2>Episodes:</h2>
+  </div>
+  <div class="pd-episodes-list pd-episodes-list--content">
+    <h3>Colección de episodios:</h3>
+    <a href={podcastCollectionUrl.collectionUrl}>Click here</a>
+  </div>
+</article>
+
+<style>
+  .pd-episodes-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .pd-episodes-list {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 0 1rem;
+  }
+  .pd-episodes-list--head {
+  }
+
+  .pd-episodes-list--content {
+  }
+</style>
