@@ -1,0 +1,20 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import PodcastList from "@/components/PodcastList/PodcastList.jsx";
+import { podcastsData } from "../utils/fetchData";
+import mockData from "@/lib/mockData.json";
+
+let podcastsList = await podcastsData;
+---
+
+<MainLayout title="Podcaster" />
+
+<main>
+  <PodcastList client:load podcastsData={podcastsList} />
+</main>
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
