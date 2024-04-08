@@ -6,7 +6,7 @@ const { podcastInfo } = Astro.props;
   <aside class="pd-detail-aside">
     <img src={podcastInfo.image} alt="" />
     <div class="pd-title">
-      <h3>{podcastInfo.name}</h3>
+      <h3><a href=`/podcast/${podcastInfo.id}`>{podcastInfo.name}</a></h3>
       <p>by {podcastInfo.artist}</p>
     </div>
     <div class="pd-description">
