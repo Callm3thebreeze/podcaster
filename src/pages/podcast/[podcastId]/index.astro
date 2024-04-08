@@ -4,15 +4,14 @@ import DetailLayout from "@/layouts/DetailLayout.astro";
 import { podcastsData, getPodcastDetail } from "@/utils/fetchData";
 import EpisodesList from "@/components/EpisodesList.astro";
 
-const { id } = Astro.params;
-let podcastsList = await podcastsData;
-const podcastInfo = await podcastsList.find((podcast) => podcast.id === id);
-const episodesData = await getPodcastDetail(id);
----
+const { podcastId } = Astro.params;
 
-<script define:vars={{ episodesData }}>
-  console.log(episodesData);
-</script>
+const podcastsList = await podcastsData;
+const podcastInfo = await podcastsList.find(
+  (podcast) => podcast.id === podcastId
+);
+const episodesData = await getPodcastDetail(podcastId);
+---
 
 <MainLayout title="Podcaster" />
 
