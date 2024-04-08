@@ -9,7 +9,6 @@ const podcastsList = await podcastsData;
 const podcastInfo = await podcastsList.find(
   (podcast) => podcast.id === podcastId
 );
-console.log(podcastInfo);
 const episodesData = await getPodcastDetail(podcastId);
 const episodesArray = episodesData.results.slice(1);
 
