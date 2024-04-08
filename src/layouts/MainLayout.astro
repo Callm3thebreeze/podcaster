@@ -15,9 +15,28 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <style>
+      #loading-indicator {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    </style>
+    <script>
+      window.addEventListener("beforeunload", function () {
+        document.getElementById("loading-indicator").style.display = "block";
+      });
+
+      window.addEventListener("load", function () {
+        document.getElementById("loading-indicator").style.display = "none";
+      });
+    </script>
   </head>
   <header class="pd-header">
     <a href="/" class="home-title">Podcaster</a>
+    <div id="loading-indicator">Cargando...</div>
   </header>
   <body>
     <slot />
@@ -31,6 +50,7 @@ const { title } = Astro.props;
     header {
       padding: 1rem 0;
       border-bottom: 1px solid #4e4a4a;
+      position: relative;
     }
     .home-title {
       font-size: 1.5rem;
@@ -43,6 +63,4 @@ const { title } = Astro.props;
       text-decoration: none;
     }
   </style>
-
-
 </html>
